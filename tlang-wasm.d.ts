@@ -14,12 +14,25 @@ export class BrowserKeyboardInterface {
 }
 /**
 */
+export class Output {
+  free(): void;
+/**
+* @returns {string}
+*/
+  readonly code: string;
+/**
+* @returns {string}
+*/
+  readonly result: string;
+}
+/**
+*/
 export class OutputInterface {
   free(): void;
 /**
-* @returns {string | undefined}
+* @returns {Output | undefined}
 */
-  poll(): string | undefined;
+  poll(): Output | undefined;
 }
 /**
 */
@@ -48,8 +61,11 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
   readonly __wbg_terminalapi_free: (a: number) => void;
+  readonly __wbg_output_free: (a: number) => void;
+  readonly output_code: (a: number, b: number) => void;
+  readonly output_result: (a: number, b: number) => void;
   readonly __wbg_outputinterface_free: (a: number) => void;
-  readonly outputinterface_poll: (a: number, b: number) => void;
+  readonly outputinterface_poll: (a: number) => number;
   readonly terminalapi_new: (a: number) => number;
   readonly terminalapi_browser_keyboard_interface: (a: number) => number;
   readonly terminalapi_output_interface: (a: number) => number;
@@ -59,9 +75,9 @@ export interface InitOutput {
   readonly browserkeyboardinterface_send_keyboard_event: (a: number, b: number) => void;
   readonly __wbindgen_export_0: WebAssembly.Table;
   readonly _dyn_core__ops__function__FnMut__A____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__hf7b7d17be096728c: (a: number, b: number, c: number) => void;
-  readonly wasm_bindgen__convert__closures__invoke2_mut__h7f01530108aa2467: (a: number, b: number, c: number, d: number) => void;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number) => void;
+  readonly wasm_bindgen__convert__closures__invoke2_mut__h7f01530108aa2467: (a: number, b: number, c: number, d: number) => void;
   readonly __wbindgen_malloc: (a: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number) => number;
 }
